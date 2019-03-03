@@ -1,11 +1,13 @@
 import redis
-
+import logging
 
 class Config(object):
     """项目配置信息"""
     # base64.b64encode(os.urandom(32))
     SECRET_KEY = "2hj+Z5MJ9JJ7tISPUebJZzzQfrs3cfgDLWNspSVk+Hk="
     # DEBUG = True
+    # 默认日志等级
+    LOG_LEVEL = logging.DEBUG
 
     # 数据库的配置信息
     SQLALCHEMY_DATABASE_URI = "mysql://root:mysql@127.0.0.1:3306/infor"
@@ -30,7 +32,7 @@ class DevelopementConfig(Config):
 
 class ProductionConfig(Config):
     """生产模式下的配置"""
-    pass
+    LOG_LEVEL = logging.ERROR
 
 # 定义配置字典
 config = {
