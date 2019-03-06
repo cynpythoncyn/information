@@ -204,6 +204,19 @@ function generateImageCode() {
     $(".get_pic_code").attr("src",imageCodeUrl)
 
 }
+function logout(){
+    $.ajax({
+        url:"/passport/logout",
+        method:"post",
+        contentType:"application/json",
+        headers:{
+            "X-CSRFToken":getCookie("csrf_token")
+        },
+        success:function (resp) {
+            location.reload()
+        }
+    })
+}
 
 // 发送短信验证码
 function sendSMSCode() {
