@@ -48,8 +48,14 @@ def create_app(config_name):
         response.set_cookie('csrf_token',csrf_token)
         return response
 
+    from info.utils.common import do_index_class
+    # 添加自定义过滤器
+    app.add_template_filter(do_index_class, "index_class")
+
     # 设置session保存位置
     Session(app)
+
+
 
     # 3.注册首页模块蓝图
     from info.modules.index import index_blu
